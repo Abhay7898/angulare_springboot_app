@@ -20,7 +20,7 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private int age;
-	private long mobilrNumber;
+	private long mobileNumber;
 	private String emailId;
 	private String address;
 	private String userId;
