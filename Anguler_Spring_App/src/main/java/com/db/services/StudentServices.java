@@ -4,9 +4,9 @@ import com.db.Model.Student;
 
 public interface StudentServices {
 	
-	public Student createStudent(Student stu);
-	public Student upadteStudent(Student stu);
-	public Student getAllStudent(Student stu);
+	public Student createStudent(Student student);
+	public Student upadteStudent(Student student);
+	public Student getAllStudent(Student student);
 	public Student deleteStudentById(Integer id);
 	public Student getStudentByNameAndMobileNumber(String name,long mobilenumber);
 
