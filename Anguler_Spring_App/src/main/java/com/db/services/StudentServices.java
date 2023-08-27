@@ -1,13 +1,15 @@
 package com.db.services;
 
-import com.db.Model.Student;
+import java.util.List;
+
+import com.db.model.Student;
 
 public interface StudentServices {
 	
 	public Student createStudent(Student student);
-	public Student upadteStudent(Student student);
+	public boolean upadteStudent(Student student);
+	public boolean deleteStudentById(Integer id);
+	public Student getStudentByFirstNameAndMobileNumber(String name,long mobilenumber);
 	public Student getAllStudent(Student student);
-	public Student deleteStudentById(Integer id);
-	public Student getStudentByNameAndMobileNumber(String name,long mobilenumber);
-
 }
+

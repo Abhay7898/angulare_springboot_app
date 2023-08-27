@@ -1,11 +1,15 @@
 package com.db.servicesimpl;
 
+import java.util.Optional;
+
+import javax.swing.text.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.db.Model.Student;
+import com.db.model.Student;
 import com.db.repositry.StudentRepositryInterface;
 import com.db.services.StudentServices;
+import com.db.utils.StudentUtiliy;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,36 +18,60 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentServicesImpl implements StudentServices{
 	
 	@Autowired
-	public StudentRepositryInterface stuRepositry;
+	public StudentRepositryInterface studentRepositry;
 
 	@Override
 	public Student createStudent(Student student) {
-		Student stu =stuRepositry.save(student);
+		Student stu =studentRepositry.save(student);
 		log.info(student.toString());
 		return stu;
 	}
 
 	@Override
-	public Student upadteStudent(Student student) {
-		
-		return null;
+	public boolean upadteStudent(Student student) {
+		Optional<Student>s=studentRepositry.findById(student.getId());
+		if(s.isPresent()) {
+			Student oldS=s.get();
+			oldS.setId(student.getId());
+			oldS.setFirstName(student.getFirstName());
+			oldS.setLastName(student.getLastName());
+			oldS.setAge(student.getAge());
+			oldS.setMobileNumber(student.getMobileNumber());
+			oldS.setEmailId(student.getEmailId());
+			oldS.setAddress(student.getAddress());
+			oldS.setUserId(student.getUserId());
+			try {
+				studentRepositry.save(oldS);
+				log.info(StudentUtiliy.DATA_UPDATE_IS_SUCCEFULLY);
+				return true;
+			} catch (Exception e) {
+				log.error(StudentUtiliy.DATA_UPDATION_IS_FAILED);
+				return false;
+			}
+			
+		}else {
+			return false;
+		}
+	}
+	@Override
+	public boolean deleteStudentById(Integer id) {
+		try {
+			studentRepositry.deleteById(id);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
+	@Override
+	public Student getStudentByFirstNameAndMobileNumber(String name, long mobilenumber) {
+		return null;
+		
+	}
 	@Override
 	public Student getAllStudent(Student student) {
 		
-		return null;
-	}
-
-	@Override
-	public Student deleteStudentById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Student getStudentByNameAndMobileNumber(String name, long mobilenumber) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

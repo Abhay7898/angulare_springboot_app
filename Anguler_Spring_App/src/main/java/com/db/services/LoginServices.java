@@ -1,6 +1,6 @@
 package com.db.services;
 
-import com.db.Model.Login;
+import com.db.model.Login;
 
 public interface LoginServices {
 	
