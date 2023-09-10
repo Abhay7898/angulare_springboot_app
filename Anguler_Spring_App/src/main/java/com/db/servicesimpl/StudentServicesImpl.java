@@ -1,5 +1,6 @@
 package com.db.servicesimpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.text.Utilities;
@@ -15,23 +16,23 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class StudentServicesImpl implements StudentServices{
-	
+public class StudentServicesImpl implements StudentServices {
+
 	@Autowired
 	public StudentRepositryInterface studentRepositry;
 
 	@Override
 	public Student createStudent(Student student) {
-		Student stu =studentRepositry.save(student);
+		Student stu = studentRepositry.save(student);
 		log.info(student.toString());
 		return stu;
 	}
 
 	@Override
 	public boolean upadteStudent(Student student) {
-		Optional<Student>s=studentRepositry.findById(student.getId());
-		if(s.isPresent()) {
-			Student oldS=s.get();
+		Optional<Student> s = studentRepositry.findById(student.getId());
+		if (s.isPresent()) {
+			Student oldS = s.get();
 			oldS.setId(student.getId());
 			oldS.setFirstName(student.getFirstName());
 			oldS.setLastName(student.getLastName());
@@ -43,16 +44,19 @@ public class StudentServicesImpl implements StudentServices{
 			try {
 				studentRepositry.save(oldS);
 				log.info(StudentUtiliy.DATA_UPDATE_IS_SUCCEFULLY);
+				log.info(oldS.toString()); // Abhay
 				return true;
 			} catch (Exception e) {
 				log.error(StudentUtiliy.DATA_UPDATION_IS_FAILED);
+				log.error(e.getMessage()); // Abhay 
 				return false;
 			}
-			
-		}else {
+
+		} else {
 			return false;
 		}
 	}
+
 	@Override
 	public boolean deleteStudentById(Integer id) {
 		try {
@@ -66,14 +70,17 @@ public class StudentServicesImpl implements StudentServices{
 
 	@Override
 	public Student getStudentByFirstNameAndMobileNumber(String name, long mobilenumber) {
-		return null;
-		
+		//Optional<Student> stOptional= studentRepositry.findByFirstNameAndMobileNumber(name, mobilenumber);
+		Student stu=studentRepositry.findByFirstNameAndMobileNumber(name, mobilenumber);
+		log.info(stu.toString());
+		return stu;
 	}
+
 	@Override
+	      //list
 	public Student getAllStudent(Student student) {
-		
+		List<Student> list=studentRepositry.findAll(); // Abhay 
 		return null;
 	}
 
-	
 }
