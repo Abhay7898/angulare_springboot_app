@@ -10,12 +10,14 @@ import com.db.servicesimpl.LoginServicesImpl;
 
 @RestController
 public class LoginController {
+	
+	
 	@Autowired
 	public LoginServicesImpl loginServicesImpl;
 	
 	@PutMapping
 	public ResponseEntity<?> createUser(Login login) {
-		return  null;
+		return  loginServicesImpl.createUser(login);
 	}
 	
 	public ResponseEntity<?> login(String usereId,String password) {

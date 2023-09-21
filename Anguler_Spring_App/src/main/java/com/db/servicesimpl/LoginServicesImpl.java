@@ -1,19 +1,25 @@
 package com.db.servicesimpl;
 
+import java.util.List;
+
 import com.db.model.Login;
+import com.db.repositry.LoginRepositryInterface;
 import com.db.services.LoginServices;
 
 public class LoginServicesImpl implements LoginServices {
-
+	
+	public LoginRepositryInterface loginRepositryInterface;
 	@Override
-	public Login createUser(Login login) {
-		
-		
+	public String createUser(Login login) {
+		List<Login> list=loginRepositryInterface.findByUserId(login.getUserId());
+		if(list.isEmpty()) {
+			
+		}
 		return null;
 	}
 
 	@Override
-	public Login login(Login login) {
+	public String login(Login login) {
 		
 		return null;
 	}

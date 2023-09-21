@@ -24,5 +24,6 @@ public class Login {
 	@Transient
 	private String confrimPassword;
 	private boolean status;
+	
 
 }

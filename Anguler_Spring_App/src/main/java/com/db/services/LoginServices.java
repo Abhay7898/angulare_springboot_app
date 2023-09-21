@@ -4,7 +4,7 @@ import com.db.model.Login;
 
 public interface LoginServices {
 	
-	public Login createUser(Login login);
-	public Login login(Login login);
+	public String createUser(Login login);
+	public String login(Login login);
 
 }
