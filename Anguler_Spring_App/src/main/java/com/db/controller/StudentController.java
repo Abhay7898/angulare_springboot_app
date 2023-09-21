@@ -66,7 +66,7 @@ public class StudentController {
 	public ResponseEntity<?> getStudentByFirstNameAndMobileNumber(@Param("name") String name,@Param("mobilenumber") long mobilenumber){
 		 Student stu=studentServicesImpl.getStudentByFirstNameAndMobileNumber(name, mobilenumber);
 		 log.info("GetStudentByFirstNameAndMobileNumber API Call");
-		 if(stu==null) {
+		 if(stu!=null) {
 			 log.info(StudentUtiliy.SUCCEFULLY);
 			 return new  ResponseEntity<>(stu,HttpStatus.FOUND);
 		 }else {
