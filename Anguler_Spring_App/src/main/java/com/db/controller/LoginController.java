@@ -42,7 +42,6 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public ResponseEntity<?> login(@Param("userName") String userName, @Param("password") String password) {
-		System.out.println();
 		return null;
 	}
 }
