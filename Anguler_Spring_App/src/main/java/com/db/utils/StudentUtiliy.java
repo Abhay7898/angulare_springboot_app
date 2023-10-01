@@ -14,23 +14,24 @@ public class StudentUtiliy {
 
 	public static final String USER_ALREADY_EXISTS = "User Already Exists";
 
-	public static final String PASSWORD_INCRRECT = "Password Incorrect";
-	
 	public static final String PASSWORD_NOT_MATCH="Password Not Match";
-
+	
+	public static final String PLEASE_ENTER_CORRECT_INFORMATION="Please Enter Correct_Information";
+	
 	public static final String encryption(String password) {
-		
-		return null;
+		char ch[] = password.toCharArray();
+		String str = "";
+		for(char c : ch) {
+			str += "*@" + c + "@*";
+		}
+		return str;
 	}
 
 	public static final String decryption(String password) {
-		return null;
+		return password.replace("*@", "").replace("@*", "");
 	}
 
 	public static final boolean validatePassword(String password, String confirmPassword) {
-		if (password.equals(confirmPassword)) {
-			return true;
-		}
-		return false;
+		return password.equals(confirmPassword) ? true : false;
 	}
 }

@@ -77,10 +77,8 @@ public class StudentServicesImpl implements StudentServices {
 	}
 
 	@Override
-	      //list
-	public Student getAllStudent(Student student) {
-		List<Student> list=studentRepositry.findAll(); // Abhay 
-		return null;
+	public List<Student> getAllStudent() {
+		return studentRepositry.findAll();
 	}
 
 }

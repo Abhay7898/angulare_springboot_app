@@ -27,9 +27,17 @@ public class LoginServicesImpl implements LoginServices {
 	}
 
 	@Override
-	public String login(Login login) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean login(String userId, String password) {
+		List<Login> list = loginRepositryInterface.findByUserId(userId);
+		if (list.isEmpty()) {
+			return false;
+		} else {
+			if (StudentUtiliy.encryption(password).equals(list.get(0).getPassword())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 
 }

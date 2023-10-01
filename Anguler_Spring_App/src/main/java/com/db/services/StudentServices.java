@@ -10,6 +10,6 @@ public interface StudentServices {
 	public boolean upadteStudent(Student student);
 	public boolean deleteStudentById(Integer id);
 	public Student getStudentByFirstNameAndMobileNumber(String name,long mobilenumber);
-	public Student getAllStudent(Student student);
+	public List<Student> getAllStudent();
 }
 

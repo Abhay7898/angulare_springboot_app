@@ -1,5 +1,6 @@
 package com.db.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,9 @@ public class StudentController {
 			 log.error(StudentUtiliy.USER_NOT_FOUND);
 			return new ResponseEntity<>(StudentUtiliy.USER_NOT_FOUND,HttpStatus.NOT_FOUND);
 		}
+	}
+	@GetMapping("/getAllStudent")
+	public List<Student> getAllStudent(){
+		return studentServicesImpl.getAllStudent();
 	}
  }

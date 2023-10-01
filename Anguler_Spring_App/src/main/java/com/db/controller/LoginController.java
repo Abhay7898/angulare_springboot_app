@@ -42,6 +42,10 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public ResponseEntity<?> login(@Param("userName") String userName, @Param("password") String password) {
-		return null;
+		boolean result=loginServicesImpl.login(userName, password);
+		if(result) {
+			return new ResponseEntity<>(StudentUtiliy.SUCCEFULLY,HttpStatus.OK);
+		}
+		return new ResponseEntity<>(StudentUtiliy.PLEASE_ENTER_CORRECT_INFORMATION,HttpStatus.BAD_REQUEST);
 	}
 }
