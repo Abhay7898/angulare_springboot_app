@@ -8,7 +8,7 @@ public class StudentUtiliy {
 
 	public static final String USER_ID_NOT_FOUND = "User Id not Found";
 
-	public static final String SUCCEFULLY = "Succefully";
+	public static final String SUCCEFULLY = "Successfull";
 
 	public static final String USER_NOT_FOUND = "User Not Found";
 
@@ -32,6 +32,10 @@ public class StudentUtiliy {
 	}
 
 	public static final boolean validatePassword(String password, String confirmPassword) {
-		return password.equals(confirmPassword) ? true : false;
+		return password != null && confirmPassword != null ?  password.equals(confirmPassword) ? true : false : false;
+	}
+	
+	public static boolean isUserAdmin(String code) {
+		return code == null || code.isBlank() ? false : code.equals("78988")? true:false;
 	}
 }

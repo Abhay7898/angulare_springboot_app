@@ -11,5 +11,6 @@ public interface StudentServices {
 	public boolean deleteStudentById(Integer id);
 	public Student getStudentByFirstNameAndMobileNumber(String name,long mobilenumber);
 	public List<Student> getAllStudent();
+	public Student getStudentById(int id);
 }
 

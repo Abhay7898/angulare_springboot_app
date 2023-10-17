@@ -3,39 +3,41 @@ package com.db.servicesimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.db.model.Login;
 import com.db.repositry.LoginRepositryInterface;
 import com.db.services.LoginServices;
 import com.db.utils.StudentUtiliy;
 
+@Service
 public class LoginServicesImpl implements LoginServices {
 
 	@Autowired
 	public LoginRepositryInterface loginRepositryInterface;
 
 	@Override
-	public boolean createUser(Login login) {
+	public Login createUser(Login login) {
 		List<Login> list = loginRepositryInterface.findByUserId(login.getUserId());
 		if (list.isEmpty()) {
 			String setPasswordToDB = StudentUtiliy.encryption(login.getPassword());
 			login.setPassword(setPasswordToDB);
-			loginRepositryInterface.save(login);
-			return true;
+			login.setAdmin(StudentUtiliy.isUserAdmin(login.getUserCode()));
+			return loginRepositryInterface.save(login);
 		}
-		return false;
+		return null;
 	}
 
 	@Override
-	public boolean login(String userId, String password) {
+	public Login login(String userId, String password) {
 		List<Login> list = loginRepositryInterface.findByUserId(userId);
 		if (list.isEmpty()) {
-			return false;
+			return null;
 		} else {
 			if (StudentUtiliy.encryption(password).equals(list.get(0).getPassword())) {
-				return true;
+				return list.get(0);
 			} else {
-				return false;
+				return null;
 			}
 		}
 	}

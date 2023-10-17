@@ -1,5 +1,7 @@
 package com.db.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +16,7 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
+@Table
 public class Login {
 	
 	@Id
@@ -21,9 +24,15 @@ public class Login {
 	private int id;
 	private String userId;
 	private String password;
+	
 	@Transient
 	private String confrimPassword;
-	private boolean status;
+	
+	@ColumnDefault("false")
+	private boolean admin=false;
+
+	@Transient
+	private String userCode;
 	
 
 }

@@ -4,7 +4,7 @@ import com.db.model.Login;
 
 public interface LoginServices {
 	
-	public boolean createUser(Login login);
-	public boolean login(String userId,String password);
+	public Login createUser(Login login);
+	public Login login(String userId,String password);
 
 }

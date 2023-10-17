@@ -81,4 +81,9 @@ public class StudentServicesImpl implements StudentServices {
 		return studentRepositry.findAll();
 	}
 
+	@Override
+	public Student getStudentById(int id) {	
+		return studentRepositry.findById(id).get();
+	}
+
 }
